@@ -1,12 +1,10 @@
 import { PrismaClient } from '@prisma/client';
-import { v4 as uuidv4 } from 'uuid';
 const prisma = new PrismaClient();
 export async function POST(req) {
   const { name, email, password } = await req.json();
   try {
     const user = await prisma.user.create({
       data: {
-        id: uuidv4(),
         name,
         email,
         password,
