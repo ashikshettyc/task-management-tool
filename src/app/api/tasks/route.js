@@ -2,12 +2,17 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function GET(req) {
+export async function GET() {
   try {
     const tasks = await prisma.task.findMany();
     return new Response(JSON.stringify(tasks), { status: 200 });
   } catch (error) {
-    return new Response(JSON.stringify({ error: 'Failed to fetch tasks' }), { status: 500 });
+    return new Response(
+      JSON.stringify({ error: 'Failed to fetch tasks', error }),
+      {
+        status: 500,
+      }
+    );
   }
 }
 
@@ -26,6 +31,9 @@ export async function POST(req) {
     });
     return new Response(JSON.stringify(task), { status: 201 });
   } catch (error) {
-    return new Response(JSON.stringify({ error: 'Failed to create task',error }), { status: 500 });
+    return new Response(
+      JSON.stringify({ error: 'Failed to create task', error }),
+      { status: 500 }
+    );
   }
 }
