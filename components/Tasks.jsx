@@ -16,7 +16,7 @@ function Tasks() {
 
   return (
     <div className="h-full bg-yellow-100 w-full">
-      <div className="p-5 ">
+      <div className="p-5 flex gap-3">
         {allTasks?.map((task) => (
           <div className="" key={task.id}>
             <TaskCard task={task} />

@@ -17,7 +17,8 @@ export async function GET() {
 }
 
 export async function POST(req) {
-  const { name, description, dueDate, priority, createdBy } = await req.json();
+  const { name, description, dueDate, priority, status, createdBy } =
+    await req.json();
 
   try {
     const task = await prisma.task.create({
@@ -26,13 +27,17 @@ export async function POST(req) {
         description,
         dueDate: new Date(dueDate),
         priority,
+        status,
         createdBy,
       },
     });
     return new Response(JSON.stringify(task), { status: 201 });
   } catch (error) {
     return new Response(
-      JSON.stringify({ error: 'Failed to create task', error }),
+      JSON.stringify({
+        error: 'Failed to create task',
+        message: error.message,
+      }),
       { status: 500 }
     );
   }
