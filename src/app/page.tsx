@@ -1,21 +1,24 @@
-"use client"
-import React, { useState } from 'react';
-import Login from './login/page';
-import TaskForm from '@/components/Taskform';
-import TaskList from '@/components/TaskList';
+'use client';
+import Sidebar from '@/components/Sidebar';
+import Tasks from '@/components/Tasks';
+import React from 'react';
 
 function App() {
-  const [user, setUser] = useState();
-
   return (
-    <div className="App">
-      <h1>Task Management Tool</h1> 
-
-          <TaskForm />
-     
+    <div className="App h-screen w-full">
+      <h1>Task Management Tool</h1>
+      <div>
+        <div className="flex gap-5">
+          <div className="h-screen w-[15%]">
+            <Sidebar />
+          </div>
+          <div className="h-screen w-[85%]">
+            <Tasks />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default App;
-
