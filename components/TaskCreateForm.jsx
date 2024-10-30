@@ -1,13 +1,13 @@
-import axios from 'axios';
-import React, { useState } from 'react';
+import axios from "axios";
+import React, { useState } from "react";
 
-function TaskCreateForm() {
+function TaskCreateForm({ handleform }) {
   const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    status: 'in-progress',
-    dueDate: '',
-    priority: 'low',
+    name: "",
+    description: "",
+    status: "in-progress",
+    dueDate: "",
+    priority: "low",
   });
 
   const handleChange = (e) => {
@@ -21,19 +21,22 @@ function TaskCreateForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/tasks', formData);
+      const response = await axios.post("/api/tasks", formData);
 
-      console.log('Form Data Submitted:', response.data);
+      console.log("Form Data Submitted:", response.data);
     } catch (error) {
       console.log(error);
     }
 
-    console.log('Form Data Submitted:', formData);
+    console.log("Form Data Submitted:", formData);
   };
 
   return (
     <form onSubmit={handleSubmit} className="p-5 bg-white rounded shadow">
-      <h2 className="text-xl mb-4">Create Task</h2>
+      <div className="flex justify-between">
+        <h2 className="text-xl mb-4">Create Task</h2>
+        <button onClick={handleform}>Clear</button>
+      </div>
 
       <div className="mb-4">
         <label htmlFor="name" className="block mb-1">
