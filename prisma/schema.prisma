@@ -27,7 +27,7 @@ model Task {
   id          Int       @id @default(autoincrement())
   name        String
   description String?
-  dueDate     DateTime
+  dueDate     String
   priority    String
   status      String     @default("pending")
   createdBy   Int

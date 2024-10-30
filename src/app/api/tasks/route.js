@@ -25,7 +25,7 @@ export async function POST(req) {
       data: {
         name,
         description,
-        dueDate: new Date(dueDate),
+        dueDate,
         priority,
         status,
         createdBy,
